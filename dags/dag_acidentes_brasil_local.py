@@ -32,13 +32,13 @@ def pipeline():
 
     @task.external_python(python="/usr/local/airflow/dask_venv/bin/python")
     def to_bronze_task():
-        from include.etl.to_bronze import convert_csv_to_bronze_parquet
+        from include.etl.to_bronze import convert_csv_to_parquet_local_bronze
 
         table_name = "acidentes_brasil"
         input_path = "include/datasets"
         output_path = "include/datalake/bronze"
 
-        convert_csv_to_bronze_parquet(table_name, input_path, output_path)
+        convert_csv_to_parquet_local_bronze(table_name, input_path, output_path)
 
     start_task() >> file_sensor >> to_bronze_task() >> end_task()
 
