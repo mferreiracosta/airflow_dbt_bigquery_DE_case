@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "**/dbt/**/*.sql": "jinja-sql"
+    },
+    "material-icon-theme.files.associations": {
+        "*.sql": "",
+        "**/dbt/**/*.sql": "dbt"
+    },
+    "dbt.enableNewLineagePanel": true
+}
