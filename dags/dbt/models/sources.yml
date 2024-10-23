@@ -1,0 +1,9 @@
+version: 2
+
+sources:
+  - name: cobli
+    database: 'cobli-mid-data-engineer-case'
+
+    tables:
+      - name: raw_acidentes_brasil
+  
