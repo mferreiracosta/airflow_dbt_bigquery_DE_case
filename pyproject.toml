@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "cobli-mid-data-engineer-case"
+version = "0.1.0"
+description = ""
+authors = ["Matheus Costa <matheeusferreeira@hotmail.com>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "3.12.*"
+dask = {extras = ["complete"], version = "^2024.10.0"}
+pandas = "^2.1.2"
+gcsfs = "^2024.10.0"
+astronomer-cosmos = {extras = ["dbt-bigquery"], version = "^1.7.0"}
+apache-airflow = "^2.10.2"
+apache-airflow-providers-google = "^10.24.0"
+astro-sdk-python = "^1.8.1"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
