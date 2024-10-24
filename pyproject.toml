@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "cobli-mid-data-engineer-case"
+name = "airflow_dbt_bigquery_de_case"
 version = "0.1.0"
 description = ""
 authors = ["Matheus Costa <matheeusferreeira@hotmail.com>"]
