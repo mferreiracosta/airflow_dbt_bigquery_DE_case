@@ -105,7 +105,7 @@ Crie uma nova conexão e use as seguintes configurações:
 
 Teste e salve.
 
-### Tudo pronto, inicie o DAG
+### Tudo pronto, inicie as DAGs
 
 Com o seu Airflow em execução, vá para http://localhost:8080/ e clique em DAGs, e ative as DAGs ```ingestion_gcp_pipeline``` e ```consumer_bigquery_dbt_datasets```.
 Em seguida, inicie o DAG de ingestão gcp(botão de play no canto superior direito).
