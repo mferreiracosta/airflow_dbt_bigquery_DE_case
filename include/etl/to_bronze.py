@@ -23,7 +23,7 @@ def convert_csv_to_parquet_local_bronze(filename: str, input_path: str, output_p
     df.to_parquet(
         destination,
         engine="pyarrow",
-        write_metadata_file=True,
+        write_metadata_file=False,
         compression="snappy",
         name_function=lambda n: f"part-{n}.snappy.parquet",
         partition_on=["ano", "uf"],
@@ -58,3 +58,11 @@ def convert_csv_to_parquet_gcs_bronze(filename: str, input_path: str, output_pat
         overwrite=True,
     )
     print(f"Arquivo CSV {source} convertido e salvo como Parquet em {destination}")
+
+
+if __name__ == "__main__":
+    filename = "acidentes_brasil"
+    input_path = "include/datasets"
+    output_path = "include/datalake/bronze"
+
+    convert_csv_to_parquet_local_bronze(filename, input_path, output_path)
