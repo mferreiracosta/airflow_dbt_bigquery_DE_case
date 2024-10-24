@@ -1,0 +1,45 @@
+version 2:
+
+models:
+  - name: dim_acidente
+    description: Descrição do modelo que contém dados de acidentes
+    columns:
+      - name: id
+        data_type: string
+        description: Identificador único do modelo
+
+      - name: causa_acidente
+        data_type: string
+        description: Causa do acidente
+
+      - name: tipo_acidente
+        data_type: string
+        description: Tipo do acidente
+
+      - name: classificacao_acidente
+        data_type: string
+        description: Classificação do acidente
+
+      - name: fase_dia
+        data_type: string
+        description: Fase do dia em que ocorreu o acidente
+
+      - name: sentido_via
+        data_type: string
+        description: Sentido da via
+
+      - name: condicao_metereologica
+        data_type: string
+        description: Condição meteorológica no momento do acidente
+
+      - name: tipo_pista
+        data_type: string
+        description: Tipo de pista onde ocorreu o acidente
+
+      - name: tracado_via
+        data_type: string
+        description: Traçado da via
+
+      - name: uso_solo
+        data_type: integer
+        description: Uso do solo na área do acidente

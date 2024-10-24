@@ -1,0 +1,41 @@
+version: 2
+
+models:
+  - name: dim_tempo
+    description: Descrição do modelo que contém dados temporais
+    columns:
+      - name: id
+        data_type: string
+        description: Identificador único do modelo
+
+      - name: data_hora
+        data_type: datetime
+        description: Data e hora no formato datetime
+
+      - name: dia
+        data_type: integer
+        description: Dia extraído da data_hora
+
+      - name: mes
+        data_type: integer
+        description: Mês extraído da data_hora
+
+      - name: ano
+        data_type: integer
+        description: Ano extraído da data_hora
+
+      - name: hora
+        data_type: integer
+        description: Hora extraída da data_hora
+
+      - name: minuto
+        data_type: integer
+        description: Minuto extraído da data_hora
+
+      - name: dia_semana
+        data_type: integer
+        description: Dia da semana extraído da data_hora
+
+      - name: nome_dia_semana
+        data_type: string
+        description: Nome do dia da semana

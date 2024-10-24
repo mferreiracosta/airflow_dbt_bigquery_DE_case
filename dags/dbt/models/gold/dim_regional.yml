@@ -1,0 +1,29 @@
+version: 2
+
+models:
+  - name: dim_regional
+    description: Descrição do modelo que contém dados regionais
+    columns:
+      - name: Id
+        data_type: string
+        description: Identificador único do modelo
+
+      - name: regional
+        data_type: string
+        description: Sigla da regional
+
+      - name: latitude
+        data_type: string
+        description: Latitude da localização
+
+      - name: longitude
+        data_type: string
+        description: Longitude da localização
+
+      - name: delegacia
+        data_type: string
+        description: Delegacia responsável
+
+      - name: uop
+        data_type: string
+        description: Unidade de Operações

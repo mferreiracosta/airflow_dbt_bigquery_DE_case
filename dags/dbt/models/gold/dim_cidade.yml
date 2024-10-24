@@ -1,0 +1,17 @@
+version 2:
+
+models:
+  - name: dim_cidade
+    description: Descrição do modelo que contém dados das cidades e uf brasileiras
+    columns:
+      - name: id
+        data_type: string
+        description: Identificador único do modelo
+
+      - name: cidade
+        data_type: string
+        description: Nome das cidades brasileiras
+
+      - name: uf
+        data_type: string
+        description: Siglas das UF's brasileiras

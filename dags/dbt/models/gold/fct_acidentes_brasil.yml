@@ -1,0 +1,66 @@
+version: 2
+
+models:
+  - name: fct_acidentes_brasil
+    description: Descrição do modelo que contém dados de acidentes no Brasil
+    columns:
+      - name: id
+        data_type: string
+        description: Identificador único da tabela fato
+
+      - name: data_hora_id
+        data_type: string
+        description: Identificador do modelo dim_tempo
+
+      - name: cidade_id
+        data_type: string
+        description: Identificador do modelo dim_cidade
+
+      - name: regional_id
+        data_type: string
+        description: Identificador do modelo dim_regional
+
+      - name: acidente_id
+        data_type: string
+        description: Identificador do modelo dim_acidente
+
+      - name: br
+        data_type: string
+        description: Rodovia federal onde ocorreu o acidente
+
+      - name: km
+        data_type: string
+        description: Quilômetro da rodovia onde ocorreu o acidente
+
+      - name: pessoas
+        data_type: integer
+        description: Número total de pessoas envolvidas no acidente
+
+      - name: mortos
+        data_type: integer
+        description: Número de mortos no acidente
+
+      - name: feridos_leves
+        data_type: integer
+        description: Número de feridos leves no acidente
+
+      - name: feridos_graves
+        data_type: integer
+        description: Número de feridos graves no acidente
+
+      - name: ilesos
+        data_type: integer
+        description: Número de pessoas ilesas no acidente
+
+      - name: ignorados
+        data_type: integer
+        description: Número de pessoas cuja situação é ignorada
+
+      - name: feridos
+        data_type: integer
+        description: Número total de feridos no acidente
+
+      - name: veiculos
+        data_type: integer
+        description: Número de veículos envolvidos no acidente
+  
