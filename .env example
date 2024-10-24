@@ -1,0 +1,2 @@
+AIRFLOW__CORE__TEST_CONNECTION=enabled
+GOOGLE_APPLICATION_CREDENTIALS=/usr/local/airflow/include/gcp/service-account.json
