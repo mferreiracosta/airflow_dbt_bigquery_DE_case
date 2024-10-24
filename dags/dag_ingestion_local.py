@@ -49,12 +49,26 @@ def pipeline():
             output_path=output_path
         )
 
+    @task.external_python(python="/usr/local/airflow/dask_venv/bin/python")
+    def to_silver_task():
+        from include.etl.to_silver import transform
+
+        filename = "acidentes_brasil"
+        input_path = "include/datalake/bronze"
+        output_path = "include/datalake/silver"
+
+        transform(
+            filename=filename,
+            input_path=input_path,
+            output_path=output_path
+        )
+
     @task
     def end() -> str:
         """Task que indica o término do pipeline"""
         return "end_task"
 
-    start() >> file_sensor >> convert_csv_to_parquet_bronze() >> end()
+    start() >> file_sensor >> convert_csv_to_parquet_bronze() >> to_silver_task() >> end()
 
 
 pipeline()
