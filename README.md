@@ -30,13 +30,13 @@ No seu terminal:
 
 Clone o repositório usando o GitHub CLI ou Git CLI
 ```bash
-gh repo clone mferreiracosta/cobli-mid-data-engineer-case
+gh repo clone mferreiracosta/airflow_dbt_bigquery_DE_case
 ```
 
 ou
 
 ```bash
-git clone https://github.com/mferreiracosta/cobli-mid-data-engineer-case.git
+git clone https://github.com/mferreiracosta/airflow_dbt_bigquery_DE_case.git
 ```
 
 Abra a pasta com seu editor de código.
