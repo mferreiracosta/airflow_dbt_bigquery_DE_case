@@ -10,5 +10,4 @@ webserver_config.py
 airflow.cfg
 airflow.db
 include/datalake
-include/datasets
 include/gcp
