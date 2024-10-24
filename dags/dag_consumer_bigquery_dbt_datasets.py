@@ -18,13 +18,7 @@ dbt_root_path = Path(os.getenv("DBT_ROOT_PATH", default_dbt_root_path))
 profile_config = ProfileConfig(
     profile_name="dbt_project",
     target_name="prd",
-    profile_mapping=GoogleCloudServiceAccountDictProfileMapping(
-        conn_id="google_cloud_default",
-        profile_args={
-            "project": "cobli-mid-data-engineer-case",
-            "dataset": "cobli"
-        },
-    ),
+    profiles_yml_filepath=Path('/usr/local/airflow/dags/dbt/profiles.yml')
 )
 
 raw_acidentes_brasil_dataset = Dataset("bigquery://cobli.raw_acidentes_brasil")
