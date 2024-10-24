@@ -1,8 +1,8 @@
-# Projeto Técnico de Engenharia de Dados: Cobli
+# Projeto Técnico de Engenharia de Dados
 
 
 ## Objetivo
-O objetivo deste projeto é criar um pipeline de dados de ponta a ponta a partir de um conjunto de dados forneciido pela empresa Cobli como projeto técnico da posição de engenharia de dados pleno. Isso envolve modelar os dados em tabelas de fato e dimensão, implementar etapas de qualidade de dados, utilizar tecnologias modernas de dados (dbt,  Airflow e BigQuery) e armazenar os dados na nuvem (Google Cloud Platform). O projeto é containerizado via Docker e versionado no GitHub.
+O objetivo deste projeto é criar um pipeline de dados de ponta a ponta a partir de um conjunto de dados de acidentes no brasil. Isso envolve modelar os dados em tabelas de fato e dimensão, implementar etapas de qualidade de dados, utilizar tecnologias modernas de dados (dbt,  Airflow e BigQuery) e armazenar os dados na nuvem (Google Cloud Platform). O projeto é containerizado via Docker e versionado no GitHub.
 
 **Tecnologias Utilizadas**
 - Python
