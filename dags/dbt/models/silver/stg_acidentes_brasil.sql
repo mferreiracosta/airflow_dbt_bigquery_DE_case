@@ -18,7 +18,7 @@ transform AS (
         TRIM(condicao_metereologica) AS condicao_metereologica,
         TRIM(tipo_pista) AS tipo_pista,
         TRIM(tracado_via) AS tracado_via,
-        CASE WHEN uso_solo = 'Sim' THEN 1 ELSE 0 END AS uso_solo,
+        CASE WHEN uso_solo = 'Sim' THEN 1 WHEN uso_solo = 'Nao' THEN 0 ELSE NULL END AS uso_solo,
         br,
         km,
         CAST(pessoas AS INT) AS pessoas,
