@@ -9,7 +9,6 @@ from airflow.operators.empty import EmptyOperator
 from airflow.utils.dates import days_ago
 
 from cosmos import DbtTaskGroup, ProfileConfig, ProjectConfig
-from cosmos.profiles import GoogleCloudServiceAccountDictProfileMapping
 
 
 default_dbt_root_path = Path(__file__).parent / "dbt"
