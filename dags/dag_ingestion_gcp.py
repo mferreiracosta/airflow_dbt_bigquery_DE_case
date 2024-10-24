@@ -1,3 +1,5 @@
+from datetime import timedelta
+
 from airflow.decorators import dag, task
 from airflow.datasets import Dataset
 from airflow.operators.empty import EmptyOperator
@@ -12,18 +14,27 @@ from astro.files import File
 from astro.sql.table import Table, Metadata
 from astro.constants import FileType
 
+
 raw_acidentes_brasil_dataset = Dataset("bigquery://cobli.raw_acidentes_brasil")
 
+default_args = {
+    "owner": "Matheus Ferreira Costa",
+    "retries": 1,
+    "retry_delay": timedelta(minutes=5),
+}
 
 @dag(
-    dag_id="Ingestion_acidentes_brasil_gcp_pipeline",
+    dag_id="ingestion_gcp_pipeline",
     start_date=days_ago(1),
     schedule=None,
+    default_args=default_args,
+    max_active_runs=1,
     catchup=False,
-    tags=["landing", "bronze", "bigquery", "raw_acidentes_brasil"],
+    tags=["landing", "bronze", "acidentes_brasil", "gcp"],
 )
 def pipeline():
 
+    # Task que indica o início do pipeline
     start = EmptyOperator(task_id="start_task")
 
     file_sensor = FileSensor(
@@ -48,13 +59,13 @@ def pipeline():
         from include.etl.to_bronze import convert_csv_to_parquet_gcs_bronze
 
         filename = "acidentes_brasil"
-        src_bucket_name = "gs://plataforma-dados-cobli-landing"
-        dst_bucket_name = "gs://plataforma-dados-cobli-bronze"
+        input_path = "gs://plataforma-dados-cobli-landing"
+        output_path = "gs://plataforma-dados-cobli-bronze"
 
         convert_csv_to_parquet_gcs_bronze(
             filename=filename,
-            src_bucket_name=src_bucket_name,
-            dst_bucket_name=dst_bucket_name
+            input_path=input_path,
+            output_path=output_path
         )
     
     # # Create bigquery dataset
@@ -82,6 +93,7 @@ def pipeline():
         outlets=[raw_acidentes_brasil_dataset]
     )
 
+    # Task que indica o término do pipeline
     end = EmptyOperator(task_id="end_task")
 
     start >> file_sensor >> local_files_to_landing >> convert_csv_to_parquet_bronze() >> raw_acidentes_brazil_bigquery >> end
