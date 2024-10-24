@@ -41,7 +41,7 @@ git clone https://github.com/mferreiracosta/airflow_dbt_bigquery_DE_case.git
 
 Abra a pasta com seu editor de código.
 
-### Reinitialize the Airflow project
+### Reinicializar o projeto do Airflow
 
 Abra o terminal do editor de código:
 
@@ -53,13 +53,23 @@ Digite ```y``` e o projeto será reiniciado.
 
 ### Construir o projeto
 No terminal do editor de código, digite:
-
 ```bash
 astro dev start
 ```
 O endpoint padrão do Airflow é o http://localhost:8080/
 - username: admin
 - password: admin
+
+#### Reiniciar o projeto
+Após iniciar o projeto, preencher o o arquivo ```.env``` com as variaveis que estão em ```.env example```. Após feito isto, reiniciar o airflow digitando:
+```bash
+astro dev restart
+```
+
+### Criar pastas necessárias
+Criar a pasta datalake no caminho ```include/datalake```e dentro da pasta adicionar outras duas:
+- ```datalake/bronze/``` 
+- ```datalake/silver/```
 
 
 ### Criar o projeto GCP
@@ -71,8 +81,8 @@ Copie seu ID do projeto e salve-o para mais tarde.
 #### Usando o ID do projeto do GCP
 
 Altere os seguintes arquivos:
-- include\dbt\models\sources.yml (database)
-- include\dbt\profiles.yml (project)
+- dags/dbt/models/sources.yml (database)
+- dags/dbt/profiles.yml (project)
 
 #### Criar um Bucket no GCP
 
@@ -90,7 +100,7 @@ No seu Airflow, em http://localhost:8080/, faça login e vá para Admin → Conn
 Crie uma nova conexão e use as seguintes configurações:
 - conn_id: google_cloud_default
 - conn_type: Google Cloud
-- project_id: cobli-mid-data-engineer-case
+- project_id: airflow-dbt-bigquery-de-case
 - keyfile_path `/usr/local/airflow/include/gcp/service-account.json`
 
 Teste e salve.
