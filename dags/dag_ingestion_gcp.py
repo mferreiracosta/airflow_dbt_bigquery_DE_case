@@ -7,7 +7,7 @@ from airflow.sensors.filesystem import FileSensor
 from airflow.utils.dates import days_ago
 
 from airflow.providers.google.cloud.transfers.local_to_gcs import LocalFilesystemToGCSOperator
-# from airflow.providers.google.cloud.operators.bigquery import BigQueryCreateEmptyDatasetOperator
+from airflow.providers.google.cloud.operators.bigquery import BigQueryCreateEmptyDatasetOperator
 
 from astro import sql as aql
 from astro.files import File
@@ -47,7 +47,7 @@ def pipeline():
 
     local_files_to_landing = LocalFilesystemToGCSOperator(
         task_id="local_files_to_landing",
-        src="include/datasets/acidentes_brasil.csv",
+        src="include/datasets/acidentes_brasil/acidentes_brasil.csv",
         dst="acidentes_brasil/acidentes_brasil.csv",
         bucket="plataforma-dados-cobli-landing",
         gcp_conn_id="google_cloud_default",
@@ -68,12 +68,12 @@ def pipeline():
             output_path=output_path
         )
     
-    # # Create bigquery dataset
-    # create_dataset = BigQueryCreateEmptyDatasetOperator(
-    #     task_id='create_dataset',
-    #     dataset_id='cobli',
-    #     gcp_conn_id='google_cloud_default',
-    # )
+    # Create bigquery dataset
+    create_dataset = BigQueryCreateEmptyDatasetOperator(
+        task_id='create_dataset',
+        dataset_id='cobli',
+        gcp_conn_id='google_cloud_default',
+    )
 
     # Load parquet file from bronze bucket on GCS to BigQuery raw table
     raw_acidentes_brazil_bigquery = aql.load_file(
@@ -96,7 +96,7 @@ def pipeline():
     # Task que indica o término do pipeline
     end = EmptyOperator(task_id="end_task")
 
-    start >> file_sensor >> local_files_to_landing >> convert_csv_to_parquet_bronze() >> raw_acidentes_brazil_bigquery >> end
+    start >> file_sensor >> local_files_to_landing >> convert_csv_to_parquet_bronze() >> create_dataset >> raw_acidentes_brazil_bigquery >> end
 
 
 pipeline()
