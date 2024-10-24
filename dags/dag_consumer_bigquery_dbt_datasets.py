@@ -20,7 +20,7 @@ profile_config = ProfileConfig(
     profiles_yml_filepath=Path('/usr/local/airflow/dags/dbt/profiles.yml')
 )
 
-raw_acidentes_brasil_dataset = Dataset("bigquery://cobli.raw_acidentes_brasil")
+raw_acidentes_brasil_dataset = Dataset("bigquery://acidentes.raw_acidentes_brasil")
 
 default_args = {
     "owner": "Matheus Ferreira Costa",

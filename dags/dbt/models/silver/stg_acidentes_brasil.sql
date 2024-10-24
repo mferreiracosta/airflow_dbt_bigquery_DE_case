@@ -1,6 +1,6 @@
 WITH source AS (
     SELECT *
-    FROM {{ source('cobli', 'raw_acidentes_brasil') }}
+    FROM {{ source('acidentes', 'raw_acidentes_brasil') }}
 ),
 
 transform AS (

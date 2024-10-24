@@ -15,7 +15,7 @@ from astro.sql.table import Table, Metadata
 from astro.constants import FileType
 
 
-raw_acidentes_brasil_dataset = Dataset("bigquery://cobli.raw_acidentes_brasil")
+raw_acidentes_brasil_dataset = Dataset("bigquery://acidentes.raw_acidentes_brasil")
 
 default_args = {
     "owner": "Matheus Ferreira Costa",
@@ -49,7 +49,7 @@ def pipeline():
         task_id="local_files_to_landing",
         src="include/datasets/acidentes_brasil/acidentes_brasil.csv",
         dst="acidentes_brasil/acidentes_brasil.csv",
-        bucket="plataforma-dados-cobli-landing",
+        bucket="plataforma-dados-landing",
         gcp_conn_id="google_cloud_default",
         mime_type="text/csv",
     )
@@ -59,8 +59,8 @@ def pipeline():
         from include.etl.to_bronze import convert_csv_to_parquet_gcs_bronze
 
         filename = "acidentes_brasil"
-        input_path = "gs://plataforma-dados-cobli-landing"
-        output_path = "gs://plataforma-dados-cobli-bronze"
+        input_path = "gs://plataforma-dados-landing"
+        output_path = "gs://plataforma-dados-bronze"
 
         convert_csv_to_parquet_gcs_bronze(
             filename=filename,
@@ -71,7 +71,7 @@ def pipeline():
     # Create bigquery dataset
     create_dataset = BigQueryCreateEmptyDatasetOperator(
         task_id='create_dataset',
-        dataset_id='cobli',
+        dataset_id='acidentes',
         gcp_conn_id='google_cloud_default',
     )
 
@@ -79,14 +79,14 @@ def pipeline():
     raw_acidentes_brazil_bigquery = aql.load_file(
         task_id='raw_acidentes_brazil_bigquery',
         input_file=File(
-            'gs://plataforma-dados-cobli-bronze/acidentes_brasil/*.parquet',
+            'gs://plataforma-dados-bronze/acidentes_brasil/*.parquet',
             conn_id='google_cloud_default',
             filetype=FileType.PARQUET,
         ),
         output_table=Table(
             name='raw_acidentes_brasil',
             conn_id='google_cloud_default',
-            metadata=Metadata(schema='cobli')
+            metadata=Metadata(schema='acidentes')
         ),
         if_exists="replace",
         use_native_support=True,
