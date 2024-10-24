@@ -64,7 +64,7 @@ O endpoint padrão do Airflow é o http://localhost:8080/
 
 ### Criar o projeto GCP
 
-No seu navegador, vá para https://console.cloud.google.com/ e crie um projeto, recomendado algo como: ```cobli-mid-data-engineer-case```
+No seu navegador, vá para https://console.cloud.google.com/ e crie um projeto, recomendado algo como: ```airflow_dbt_bigquery_de_case```
 
 Copie seu ID do projeto e salve-o para mais tarde.
 
@@ -77,7 +77,7 @@ Altere os seguintes arquivos:
 #### Criar um Bucket no GCP
 
 Com o projeto selecionado, vá para https://console.cloud.google.com/storage/browser e crie 2 Buckets.
-Use os nomes ```plataforma-dados-cobli-silver``` e ```plataforma-dados-cobli-bronze```.
+Use os nomes ```plataforma-dados-silver``` e ```plataforma-dados-bronze```.
 
 #### Criar uma conta de serviço para o projeto
 
